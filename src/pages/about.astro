@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../site.config';
+---
+
+<BaseLayout
+  title="About"
+  description={`${SITE.name} is ${SITE.owner}, an independent website builder serving local service businesses in ${SITE.serviceArea} with a deliberately narrow, honestly scoped offer.`}
+>
+  <header class="page-intro container">
+    <p class="eyebrow">About</p>
+    <h1>One person, doing one thing carefully</h1>
+    <p class="lede">
+      {SITE.name} is me — {SITE.owner}. No sales team, no offshore handoffs,
+      no "account managers." The person you talk to is the person who builds
+      your site.
+    </p>
+  </header>
+
+  <div class="prose container">
+    <h2>Why the scope is narrow</h2>
+    <p>
+      I build one thing: small, fast, lead-generation websites for local
+      service businesses. Not apps, not online stores, not sprawling
+      marketing platforms. Keeping the scope narrow is what makes it possible
+      to offer a fixed price, a predictable schedule, and a consistent
+      standard of work — and to keep getting better at exactly the thing you're
+      paying for.
+    </p>
+
+    <h2>How I work</h2>
+    <ul>
+      <li>
+        <strong>Everything in writing.</strong> Scope, price, schedule, and
+        what happens after launch are agreed before work starts.
+      </li>
+      <li>
+        <strong>Evidence over claims.</strong> I don't decorate this site
+        with invented praise or client counts. What I show you —
+        like the <a href="/work/">Run PSL build</a> — is real and publicly
+        verifiable.
+      </li>
+      <li>
+        <strong>You own your site.</strong> Domain, code, and content stay in
+        your hands. My job is to make myself unnecessary, not indispensable.
+      </li>
+      <li>
+        <strong>Plain communication.</strong> You'll get direct answers in
+        normal language, including "no" when something isn't worth your
+        money.
+      </li>
+    </ul>
+
+    <h2>Where I am</h2>
+    <p>
+      I'm based on Florida's Treasure Coast and work with businesses
+      around {SITE.serviceArea}. Local matters for this kind of site: I know the
+      area your customers are searching from.
+    </p>
+
+    <h2>The honest position</h2>
+    <p>
+      I'm early in building this service, and I say so plainly rather than
+      dressing this site up as an established agency. What I offer in
+      exchange: founding-client pricing, more attention per project than any
+      volume shop can give, and a completely inspectable way of working.
+      If you'd rather hire a big agency, that's a reasonable choice — but if
+      you want a careful builder who treats your project as reputation-making
+      work, that's exactly what this is.
+    </p>
+
+    <div class="cta-row">
+      <a class="btn" href="/contact/">Request a quote</a>
+      <a class="btn secondary" href="/work/">See the work</a>
+    </div>
+  </div>
+</BaseLayout>

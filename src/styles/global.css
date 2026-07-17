@@ -1,0 +1,636 @@
+/* ==========================================================================
+   DeMarzo Web — global stylesheet
+   --------------------------------------------------------------------------
+   Structure:
+     1. Design tokens
+     2. Base elements
+     3. Layout primitives
+     4. Header & navigation
+     5. Page openers (hero, page intro)
+     6. Components (buttons, tiles, spec lists, steps, bands, notices)
+     7. Footer
+     8. Responsive adjustments
+     9. Reduced motion
+
+   All colors were checked for WCAG AA contrast (≥ 4.5:1 for text) against
+   the backgrounds they appear on.
+   ========================================================================== */
+
+/* 1. Design tokens
+   ========================================================================== */
+:root {
+  /* Color */
+  --bg: #f7f9fa;            /* page background, cool near-white          */
+  --surface: #ffffff;       /* raised panels and tiles                   */
+  --ink: #101820;           /* primary text, 16.9:1 on --bg              */
+  --muted: #45535f;         /* secondary text, 7.5:1 on --bg             */
+  --line: #dde3e8;          /* hairline rules and borders                */
+  --accent: #0b6b62;        /* deep teal; text-safe, 6:1 on --bg         */
+  --accent-deep: #0a544e;   /* hover / emphasis teal                     */
+  --accent-wash: #e3f0ee;   /* pale teal panel background                */
+  --footer-bg: #10181f;     /* dark closing band                         */
+  --footer-text: #c6d0d8;   /* 11.4:1 on --footer-bg                     */
+  --footer-muted: #8fa0ad;  /* 6.6:1 on --footer-bg                     */
+
+  /* Type */
+  --font-body: 'Inter Variable', system-ui, sans-serif;
+  --font-display: 'Space Grotesk Variable', 'Inter Variable', system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+
+  /* Shape & rhythm */
+  --radius: 6px;
+  --container: 1120px;
+  --gutter: clamp(1.25rem, 4vw, 2rem);
+  --section-gap: clamp(3.5rem, 8vw, 6.5rem);
+}
+
+/* 2. Base elements
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.6em;
+  text-wrap: balance;
+}
+
+h2 {
+  font-size: clamp(1.6rem, 3.5vw, 2.25rem);
+}
+
+h3 {
+  font-size: 1.2rem;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+ul, ol {
+  margin: 0 0 1em;
+  padding-left: 1.2em;
+}
+
+a {
+  color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--accent-deep);
+}
+
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.skip-link {
+  position: fixed;
+  left: 1rem;
+  top: -5rem;
+  z-index: 20;
+  background: var(--ink);
+  color: #fff;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* 3. Layout primitives
+   ========================================================================== */
+.container {
+  width: min(var(--container), 100% - 2 * var(--gutter));
+  margin-inline: auto;
+}
+
+main {
+  min-height: 65vh;
+}
+
+.section {
+  padding-block: var(--section-gap);
+}
+
+.section + .section {
+  padding-top: 0;
+}
+
+.section-head {
+  max-width: 40rem;
+  margin-bottom: 2.2rem;
+}
+
+.section-head p {
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.section-head.wide {
+  max-width: 46rem;
+}
+
+/* Mono "spec" label: small technical eyebrow used across the site */
+.eyebrow {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 0.9rem;
+}
+
+/* 4. Header & navigation
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  padding-block: 0.8rem;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-display);
+  font-size: 1.08rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.brand:hover {
+  color: var(--ink);
+}
+
+.brand svg {
+  width: 1.65rem;
+  height: 1.65rem;
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15rem;
+}
+
+.site-nav a {
+  display: grid;
+  place-items: center;
+  min-height: 44px;
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radius);
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.site-nav a:hover {
+  color: var(--accent-deep);
+  background: var(--accent-wash);
+}
+
+.site-nav a[aria-current='page'] {
+  background: var(--ink);
+  color: #fff;
+}
+
+/* 5. Page openers
+   ========================================================================== */
+.hero {
+  padding-block: clamp(4rem, 10vw, 7.5rem) clamp(2.5rem, 6vw, 4rem);
+}
+
+.hero h1 {
+  font-size: clamp(2.3rem, 6vw, 4.1rem);
+  letter-spacing: -0.03em;
+  max-width: 17ch;
+}
+
+.page-intro {
+  padding-block: clamp(3rem, 7vw, 5rem) clamp(2rem, 5vw, 3rem);
+  border-bottom: 1px solid var(--line);
+}
+
+.page-intro h1 {
+  font-size: clamp(2rem, 5vw, 3.1rem);
+  max-width: 22ch;
+}
+
+.lede {
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  color: var(--muted);
+  max-width: 42rem;
+}
+
+/* Mono facts line under a heading, e.g. "3–5 pages · fixed quote" */
+.meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.6rem;
+  margin-top: 1.8rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+/* 6. Components
+   ========================================================================== */
+
+/* Buttons */
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.6rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.65rem 1.3rem;
+  border-radius: var(--radius);
+  background: var(--ink);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.97rem;
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+}
+
+.btn:hover {
+  background: var(--accent-deep);
+  color: #fff;
+}
+
+.btn.secondary {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+
+.btn.secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent-deep);
+  background: var(--accent-wash);
+}
+
+/* Flat bordered tiles */
+.tile-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.tile {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.4rem;
+}
+
+.tile h3 {
+  margin-bottom: 0.4rem;
+}
+
+.tile p {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.tile .eyebrow {
+  margin-bottom: 1.2rem;
+}
+
+/* Proposal-style specification list: hairline rows, term + description */
+.spec-list {
+  margin: 0;
+  border-top: 1px solid var(--line);
+}
+
+.spec-list > div {
+  display: grid;
+  grid-template-columns: 14rem 1fr;
+  gap: 0.4rem 2rem;
+  padding: 1.05rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.spec-list dt {
+  font-weight: 600;
+  font-family: var(--font-display);
+}
+
+.spec-list dd {
+  margin: 0;
+  color: var(--muted);
+}
+
+/* Numbered process steps */
+.steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+  border-top: 1px solid var(--line);
+}
+
+.steps > li {
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: 4rem 1fr;
+  gap: 0.3rem 1.5rem;
+  padding: 1.4rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.steps > li::before {
+  content: counter(step, decimal-leading-zero);
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--accent);
+  padding-top: 0.2rem;
+}
+
+.steps h3 {
+  margin-bottom: 0.35rem;
+}
+
+.steps p {
+  color: var(--muted);
+  margin: 0;
+}
+
+/* Full-width tinted band (e.g. founding rate, closing call to action) */
+.band {
+  background: var(--accent-wash);
+  border-block: 1px solid var(--line);
+  padding-block: clamp(2.5rem, 6vw, 4rem);
+}
+
+.band h2 {
+  max-width: 24ch;
+}
+
+.band p {
+  color: var(--muted);
+  max-width: 40rem;
+}
+
+.band.dark {
+  background: var(--footer-bg);
+  border-block: none;
+  color: #fff;
+}
+
+.band.dark p {
+  color: var(--footer-text);
+}
+
+.band.dark .btn {
+  background: #fff;
+  color: var(--ink);
+}
+
+.band.dark .btn:hover {
+  background: var(--accent-wash);
+}
+
+/* Case study panel */
+.case-panel {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 2rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(1.4rem, 4vw, 2.4rem);
+  align-items: center;
+}
+
+.case-panel img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+  background: var(--accent-wash);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  border-radius: 99px;
+  padding: 0.3rem 0.7rem;
+  margin-bottom: 1rem;
+}
+
+/* Long-form text pages (about, privacy, 404) */
+.prose {
+  max-width: 44rem;
+  padding-block: clamp(2rem, 5vw, 3rem) var(--section-gap);
+}
+
+.prose h2 {
+  font-size: 1.45rem;
+  margin-top: 2.4rem;
+}
+
+.prose p,
+.prose li {
+  color: var(--muted);
+}
+
+.prose strong {
+  color: var(--ink);
+}
+
+/* Pending-configuration notice */
+.notice {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 1rem 1.2rem;
+  margin: 1.6rem 0;
+  color: var(--muted);
+}
+
+.notice strong {
+  color: var(--ink);
+}
+
+/* 7. Footer
+   ========================================================================== */
+.site-footer {
+  background: var(--footer-bg);
+  color: var(--footer-text);
+  padding-block: clamp(2.5rem, 6vw, 4rem) 2rem;
+  margin-top: var(--section-gap);
+}
+
+.site-footer .container {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 2.5rem;
+}
+
+.site-footer .brand {
+  color: #fff;
+  margin-bottom: 0.8rem;
+}
+
+.site-footer p {
+  color: var(--footer-muted);
+  font-size: 0.92rem;
+  max-width: 28rem;
+}
+
+.site-footer h2 {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--footer-muted);
+  margin-bottom: 1rem;
+}
+
+.site-footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.site-footer a {
+  color: var(--footer-text);
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.footer-legal {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
+  justify-content: space-between;
+  border-top: 1px solid #26313a;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--footer-muted);
+}
+
+/* 8. Responsive adjustments
+   ========================================================================== */
+@media (max-width: 860px) {
+  .tile-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .case-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .site-footer .container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .tile-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .spec-list > div {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+  }
+
+  .steps > li {
+    grid-template-columns: 2.6rem 1fr;
+  }
+
+  .site-footer .container {
+    grid-template-columns: 1fr;
+    gap: 1.8rem;
+  }
+
+  .site-nav a {
+    padding: 0.4rem 0.55rem;
+    font-size: 0.88rem;
+  }
+}
+
+/* 9. Reduced motion
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .btn {
+    transition: none;
+  }
+}

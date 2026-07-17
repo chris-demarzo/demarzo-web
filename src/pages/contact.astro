@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../site.config';
+---
+
+<BaseLayout
+  title="Contact"
+  description={`Request a fixed quote for a local business website from ${SITE.name}. Tell me about your business and get a plain answer about fit, scope, and price.`}
+>
+  <header class="page-intro container">
+    <p class="eyebrow">Contact</p>
+    <h1>Request a quote</h1>
+    <p class="lede">
+      Email is the whole process — no forms that vanish into a CRM, no
+      "discovery funnel." Tell me about your business and I'll reply with a
+      plain answer about whether this package fits, and a fixed quote if it
+      does.
+    </p>
+  </header>
+
+  <div class="prose container">
+    {SITE.emailPending && (
+      <div class="notice">
+        <strong>Inbox being set up:</strong> the business email address is
+        being configured and will be live before this site launches. The
+        address below is a placeholder.
+      </div>
+    )}
+
+    <h2>What to include</h2>
+    <p>A few sentences on each of these is plenty:</p>
+    <ul>
+      <li>Your business name and what you do</li>
+      <li>The area you serve</li>
+      <li>Your current website, if you have one</li>
+      <li>What you want the site to accomplish</li>
+      <li>Any rough timeline you have in mind</li>
+    </ul>
+
+    <h2>What happens next</h2>
+    <p>
+      I'll reply within one business day with either follow-up questions or a
+      straight assessment of fit. If we're a match, you get a written scope
+      and fixed quote — no obligation, no pressure follow-ups.
+    </p>
+
+    <div class="cta-row">
+      <a class="btn" href={`mailto:${SITE.email}?subject=Website%20quote%20request`}>
+        Email {SITE.email}
+      </a>
+    </div>
+  </div>
+</BaseLayout>

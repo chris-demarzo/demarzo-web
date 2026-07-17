@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../site.config';
+---
+
+<BaseLayout
+  title="Privacy"
+  description={`How ${SITE.name} handles visitor information: no cookies, no analytics, no tracking scripts, and email used only to respond to your inquiry.`}
+>
+  <header class="page-intro container">
+    <p class="eyebrow">Privacy</p>
+    <h1>Privacy, briefly</h1>
+    <p class="lede">
+      This site is built to need almost nothing from you — so this policy is
+      short and true.
+    </p>
+  </header>
+
+  <div class="prose container">
+    <h2>What this site collects</h2>
+    <p>
+      Nothing, actively. There are no cookies, no analytics, no advertising
+      pixels, and no third-party scripts of any kind. The site's hosting
+      provider (Cloudflare) keeps standard server logs — such as IP addresses
+      and requested pages — for security and operations, as virtually all web
+      hosts do.
+    </p>
+
+    <h2>If you email me</h2>
+    <p>
+      Anything you send by email is used only to respond to your inquiry and,
+      if we work together, to run your project. Your information is never
+      sold, shared for marketing, or added to a mailing list.
+    </p>
+
+    <h2>External links</h2>
+    <p>
+      Pages on this site link to external sites, such as GitHub and project
+      sites I've built. Those sites have their own privacy practices.
+    </p>
+
+    <h2>Changes</h2>
+    <p>
+      If the site ever starts collecting anything beyond the above — for
+      example, a contact form — this page will be updated first, plainly.
+    </p>
+
+    <h2>Questions</h2>
+    <p>
+      Ask any time via the <a href="/contact/">contact page</a>.
+    </p>
+  </div>
+</BaseLayout>

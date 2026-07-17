@@ -35,8 +35,10 @@ Update when anything here is resolved.
 3. **About-page personalization** — the copy is deliberately modest and
    generic about background; Chris should add any true, specific personal
    detail he wants public.
-4. **Cloudflare Pages deploy** — the GitHub repository is public and synchronized;
-   the first Git-integrated Pages deployment remains approval-gated.
+4. ~~**Cloudflare Pages deploy**~~ — done 2026-07-17. Chris connected the
+   Git integration and production is live at https://demarzo-web.pages.dev
+   with security headers, sitemap, custom 404, and CSP verified against the
+   live deployment.
 
 ## Deferred by design (not gaps)
 

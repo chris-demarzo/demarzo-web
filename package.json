@@ -1,0 +1,32 @@
+{
+  "name": "demarzo-web",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "test": "npm run build && node --test tests/*.test.mjs",
+    "test:html": "html-validate 'dist/**/*.html'",
+    "test:browser": "playwright test",
+    "verify": "npm run check && npm test && npm run test:html && npm run test:browser",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
+    "@fontsource-variable/inter": "^5.2.8",
+    "@fontsource-variable/space-grotesk": "^5.2.10",
+    "astro": "^7.1.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "@playwright/test": "^1.61.1",
+    "html-validate": "^11.5.6",
+    "typescript": "^6.0.3"
+  }
+}

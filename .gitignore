@@ -1,0 +1,29 @@
+# build output
+dist/
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+
+# environment variables
+.env
+.env.*
+
+# OS files
+.DS_Store
+
+# editor settings
+.idea/
+.vscode/
+
+# local agent instructions
+AGENTS.md
+CLAUDE.md
+
+# browser test output
+playwright-report/
+test-results/

@@ -35,8 +35,8 @@ Update when anything here is resolved.
 3. **About-page personalization** — the copy is deliberately modest and
    generic about background; Chris should add any true, specific personal
    detail he wants public.
-4. **GitHub push + Cloudflare Pages deploy** — both are approval-gated and
-   have not been performed.
+4. **Cloudflare Pages deploy** — the GitHub repository is public and synchronized;
+   the first Git-integrated Pages deployment remains approval-gated.
 
 ## Deferred by design (not gaps)
 
@@ -46,4 +46,4 @@ Update when anything here is resolved.
   premature or inaccurate.
 - Analytics — none, and the privacy page promises to disclose before any
   are added.
-- Dark mode — single deliberate light theme for v1.
+- Color-scheme toggle — the v1 site uses one deliberate dark-first theme.

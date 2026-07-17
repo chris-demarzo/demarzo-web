@@ -1,9 +1,9 @@
 /* ==========================================================================
-   DeMarzo Web — global stylesheet
+   DeMarzo Web — global stylesheet (dark-first variant)
    --------------------------------------------------------------------------
-   Visual identity: "the proposal document, made visual."
-   Blueprint graph-paper textures, ruler-tick underlines, mono spec accents,
-   deep-teal color moments, and a light/dark section rhythm.
+   Visual identity: "the proposal document, made visual" — night edition.
+   Deep blue-black surfaces, luminous teal accents, blueprint graph-paper
+   textures, ruler-tick underlines, and mono spec details.
 
    Structure:
      1. Design tokens
@@ -16,30 +16,33 @@
      8. Responsive adjustments
      9. Reduced motion
 
-   All text colors were checked for WCAG AA contrast (≥ 4.5:1) against the
-   backgrounds they appear on. Grid textures are decorative only.
+   All text colors were checked for WCAG AA contrast (≥ 4.5:1; every pair
+   here exceeds 7:1) against the backgrounds they appear on. Grid textures
+   and glows are decorative only.
    ========================================================================== */
 
 /* 1. Design tokens
    ========================================================================== */
 :root {
   /* Color */
-  --bg: #f7f9fa;            /* page background, cool near-white          */
-  --surface: #ffffff;       /* raised panels and tiles                   */
-  --ink: #101820;           /* primary text, 16.9:1 on --bg              */
-  --muted: #45535f;         /* secondary text, 7.5:1 on --bg             */
-  --line: #dde3e8;          /* hairline rules and borders                */
-  --accent: #0b6b62;        /* deep teal; text-safe, 6:1 on --bg         */
-  --accent-deep: #0a544e;   /* hover / emphasis teal                     */
-  --accent-wash: #e3f0ee;   /* pale teal panel background                */
-  --accent-light: #7fd1c7;  /* teal for use on dark backgrounds          */
-  --dark-bg: #10181f;       /* dark bands and footer                     */
-  --dark-text: #c6d0d8;     /* 11.4:1 on --dark-bg                       */
-  --dark-muted: #8fa0ad;    /* 6.6:1 on --dark-bg                        */
+  --bg: #0d141b;            /* page background, deep blue-black          */
+  --surface: #141d26;       /* raised panels and tiles                   */
+  --ink: #e9eef3;           /* primary text, 15.9:1 on --bg              */
+  --muted: #a3b3c0;         /* secondary text, 8.6:1 on --bg             */
+  --line: #253340;          /* hairline rules and borders                */
+  --accent: #53c9bc;        /* luminous teal; text-safe, 9.2:1 on --bg   */
+  --accent-strong: #3ecfbe; /* button fill; dark text on it is 8.8:1     */
+  --accent-soft: #7fd8cd;   /* teal for eyebrows on tinted panels        */
+  --on-accent: #06211d;     /* text on teal fills                        */
+  --band-bg: #10231f;       /* teal-tinted band                          */
+  --band-line: #1d3a34;
+  --deep-bg: #090e13;       /* darkest band and footer                   */
+  --dark-text: #c6d0d8;     /* 12.4:1 on --deep-bg                       */
+  --dark-muted: #8fa0ad;    /* 7.2:1 on --deep-bg                        */
 
   /* Decorative blueprint grid (never used for text) */
-  --grid-line: rgba(11, 107, 98, 0.08);
-  --grid-line-dark: rgba(255, 255, 255, 0.045);
+  --grid-line: rgba(83, 201, 188, 0.07);
+  --grid-line-dark: rgba(255, 255, 255, 0.04);
 
   /* Type */
   --font-body: 'Inter Variable', system-ui, sans-serif;
@@ -51,7 +54,7 @@
   --container: 1120px;
   --gutter: clamp(1.25rem, 4vw, 2rem);
   --section-gap: clamp(3.5rem, 8vw, 6.5rem);
-  --shadow-lift: 0 14px 36px rgba(16, 24, 32, 0.09);
+  --shadow-lift: 0 16px 40px rgba(0, 0, 0, 0.45);
 }
 
 /* 2. Base elements
@@ -108,7 +111,7 @@ a {
 }
 
 a:hover {
-  color: var(--accent-deep);
+  color: var(--accent-soft);
 }
 
 :focus-visible {
@@ -123,7 +126,7 @@ a:hover {
   top: -5rem;
   z-index: 20;
   background: var(--ink);
-  color: #fff;
+  color: var(--bg);
   padding: 0.75rem 1rem;
   border-radius: var(--radius);
   text-decoration: none;
@@ -207,7 +210,7 @@ main {
   position: sticky;
   top: 0;
   z-index: 10;
-  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
 }
@@ -263,19 +266,28 @@ main {
 }
 
 .site-nav a:hover {
-  color: var(--accent-deep);
-  background: var(--accent-wash);
+  color: var(--accent-soft);
+  background: rgba(83, 201, 188, 0.12);
 }
 
 .site-nav a[aria-current='page'] {
-  background: var(--accent-deep);
-  color: #fff;
+  background: var(--accent);
+  color: var(--on-accent);
 }
 
 /* 5. Page openers
    ========================================================================== */
 .hero-wrap {
   border-bottom: 1px solid var(--line);
+}
+
+/* Layer a soft teal glow over the blueprint grid in the hero */
+.hero-wrap.grid-paper {
+  background-image:
+    radial-gradient(56rem 30rem at 78% 0%, rgba(62, 207, 190, 0.1), transparent 65%),
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: auto, 34px 34px, 34px 34px;
 }
 
 .hero {
@@ -332,7 +344,7 @@ main {
 .scope-card {
   background: var(--surface);
   border: 1px solid var(--line);
-  border-top: 4px solid var(--accent);
+  border-top: 4px solid var(--accent-strong);
   border-radius: var(--radius);
   padding: 1.5rem 1.6rem 0.6rem;
   box-shadow: var(--shadow-lift);
@@ -405,9 +417,9 @@ main {
   min-height: 50px;
   padding: 0.7rem 1.5rem;
   border-radius: var(--radius);
-  background: var(--accent-deep);
-  color: #fff;
-  font-weight: 600;
+  background: var(--accent-strong);
+  color: var(--on-accent);
+  font-weight: 650;
   font-size: 1rem;
   text-decoration: none;
   transition: background-color 0.15s ease, transform 0.15s ease;
@@ -421,7 +433,7 @@ main {
 
 .btn:hover {
   background: var(--ink);
-  color: #fff;
+  color: var(--bg);
 }
 
 .btn:hover::after {
@@ -436,8 +448,8 @@ main {
 
 .btn.secondary:hover {
   border-color: var(--accent);
-  color: var(--accent-deep);
-  background: var(--accent-wash);
+  color: var(--accent-soft);
+  background: rgba(83, 201, 188, 0.1);
 }
 
 /* Numbered, accent-barred tiles */
@@ -452,7 +464,7 @@ main {
   counter-increment: tile;
   background: var(--surface);
   border: 1px solid var(--line);
-  border-top: 4px solid var(--accent);
+  border-top: 4px solid var(--accent-strong);
   border-radius: var(--radius);
   padding: 1.5rem;
   transition: transform 0.18s ease, box-shadow 0.18s ease;
@@ -545,10 +557,10 @@ main {
   margin: 0;
 }
 
-/* Full-width bands. Light wash by default; dark ink with .dark */
+/* Full-width bands. Teal-tinted by default; deepest black with .dark */
 .band {
-  background: var(--accent-wash);
-  border-block: 1px solid var(--line);
+  background: var(--band-bg);
+  border-block: 1px solid var(--band-line);
   padding-block: clamp(2.8rem, 6vw, 4.5rem);
 }
 
@@ -557,36 +569,25 @@ main {
 }
 
 .band p {
-  color: var(--muted);
+  color: var(--dark-text);
   max-width: 40rem;
 }
 
+.band .eyebrow {
+  color: var(--accent-soft);
+}
+
 .band.dark {
-  background-color: var(--dark-bg);
+  background-color: var(--deep-bg);
   background-image:
     linear-gradient(var(--grid-line-dark) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-line-dark) 1px, transparent 1px);
   background-size: 34px 34px;
   border-block: none;
-  color: #fff;
 }
 
 .band.dark p {
   color: var(--dark-text);
-}
-
-.band.dark .eyebrow {
-  color: var(--accent-light);
-}
-
-.band.dark .btn {
-  background: #fff;
-  color: var(--ink);
-}
-
-.band.dark .btn:hover {
-  background: var(--accent-wash);
-  color: var(--ink);
 }
 
 /* Case study panel */
@@ -650,9 +651,9 @@ main {
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--accent-deep);
-  background: var(--accent-wash);
-  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  color: var(--accent-soft);
+  background: rgba(83, 201, 188, 0.12);
+  border: 1px solid rgba(83, 201, 188, 0.35);
   border-radius: 99px;
   padding: 0.3rem 0.7rem;
   margin-bottom: 1rem;
@@ -696,8 +697,8 @@ main {
 /* 7. Footer
    ========================================================================== */
 .site-footer {
-  background: var(--dark-bg);
-  border-top: 4px solid var(--accent);
+  background: var(--deep-bg);
+  border-top: 4px solid var(--accent-strong);
   color: var(--dark-text);
   padding-block: clamp(2.5rem, 6vw, 4rem) 2rem;
   margin-top: var(--section-gap);
@@ -710,7 +711,7 @@ main {
 }
 
 .site-footer .brand {
-  color: #fff;
+  color: var(--ink);
   margin-bottom: 0.8rem;
 }
 
@@ -744,7 +745,7 @@ main {
 }
 
 .site-footer a:hover {
-  color: #fff;
+  color: var(--ink);
   text-decoration: underline;
 }
 

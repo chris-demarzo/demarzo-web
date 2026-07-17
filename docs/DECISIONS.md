@@ -12,7 +12,7 @@ Update when anything here is resolved.
 | Niche & geography | Local service businesses, Port St. Lucie / Treasure Coast, FL | |
 | Public pricing | Shown, with honest founding-client framing | Founding $1,200–$1,500; standard $1,800–$2,500; 50% deposit; two revision rounds. |
 | Contact method | `mailto:` from `SITE.email` | Placeholder address until the business inbox exists. |
-| Visual direction | "Well-set proposal document" — cool near-white, ink, deep teal, Space Grotesk + Inter, hairline rules, mono spec accents | Zero client-side JS. |
+| Visual direction | Dark-first "proposal document, made visual" — deep blue-black, luminous teal, blueprint grid textures, ruler-tick underlines, Space Grotesk + Inter, mono spec accents | Zero client-side JS. Chosen 2026-07-17 over a light variant after side-by-side comparison; the light version is preserved on the `design/light` branch. |
 | Run PSL framing | Owned demonstration project, explicitly labeled | Never described as client work; no invented metrics. |
 
 ## Assumptions (unvalidated — revisit)

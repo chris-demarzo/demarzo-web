@@ -7,22 +7,33 @@ import { SITE } from '../site.config';
   title="Websites for local service businesses"
   description={`Clear, fast, mobile-first websites for local service businesses in ${SITE.serviceArea}. Fixed scope, fixed quote, and you own everything.`}
 >
-  <section class="hero container">
-    <p class="eyebrow">{SITE.serviceArea}</p>
-    <h1>Your work is solid. Your website should say so.</h1>
-    <p class="lede">
-      I build clear, fast, mobile-first websites for local service businesses
-      — a fixed scope, a fixed quote, and a launch process you can watch
-      happen. No retainers you didn't ask for, no jargon, no mystery.
-    </p>
-    <div class="cta-row">
-      <a class="btn" href="/contact/">Request a quote</a>
-      <a class="btn secondary" href="/services/">See what's included</a>
-    </div>
-    <div class="meta-row">
-      <span>3–5 focused pages</span>
-      <span>Fixed written quote</span>
-      <span>You own the site outright</span>
+  <section class="hero-wrap grid-paper">
+    <div class="hero container">
+      <div>
+        <p class="eyebrow">{SITE.serviceArea}</p>
+        <h1 class="ruled">Your work is solid. <em>Your website should say so.</em></h1>
+        <p class="lede">
+          I build clear, fast, mobile-first websites for local service
+          businesses — a fixed scope, a fixed quote, and a launch process you
+          can watch happen. No retainers you didn't ask for, no jargon, no
+          mystery.
+        </p>
+        <div class="cta-row">
+          <a class="btn" href="/contact/">Request a quote</a>
+          <a class="btn secondary" href="/services/">See what's included</a>
+        </div>
+      </div>
+      <aside class="scope-card" aria-label="Project specification summary">
+        <p>Project spec</p>
+        <dl>
+          <div><dt>Pages</dt><dd>3–5, focused</dd></div>
+          <div><dt>Quote</dt><dd>Fixed, in writing</dd></div>
+          <div><dt>Deposit</dt><dd>50%</dd></div>
+          <div><dt>Revisions</dt><dd>2 defined rounds</dd></div>
+          <div><dt>Hosting</dt><dd>Cloudflare network</dd></div>
+          <div><dt>Ownership</dt><dd>100% yours</dd></div>
+        </dl>
+      </aside>
     </div>
   </section>
 
@@ -125,17 +136,23 @@ import { SITE } from '../site.config';
           <a class="btn secondary" href="/work/">Read the case study</a>
         </div>
       </div>
-      <img
-        src="/run-psl-preview.png"
-        alt={`Screenshot of the ${SITE.demo.name} homepage showing its directory of local running events`}
-        width="1200"
-        height="900"
-        loading="lazy"
-      />
+      <div class="browser-frame">
+        <div class="frame-bar" aria-hidden="true">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span>run-psl.pages.dev</span>
+        </div>
+        <img
+          src="/run-psl-preview.png"
+          alt={`Screenshot of the ${SITE.demo.name} homepage showing its directory of local running events`}
+          width="1200"
+          height="900"
+          loading="lazy"
+        />
+      </div>
     </div>
   </section>
 
-  <div class="band">
+  <div class="band dark">
     <div class="container">
       <p class="eyebrow">Founding-client rate</p>
       <h2>Early clients get a lower rate, honestly framed</h2>

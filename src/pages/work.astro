@@ -7,9 +7,10 @@ import { SITE } from '../site.config';
   title="Work — Run PSL case study"
   description="A complete, publicly inspectable build: Run PSL, a community running directory delivered end to end with automated checks, branch previews, Cloudflare Pages hosting, and a rehearsed rollback."
 >
-  <header class="page-intro container">
+  <header class="page-intro grid-paper">
+    <div class="container">
     <p class="eyebrow">Work</p>
-    <h1>{SITE.demo.name}: a complete build, in the open</h1>
+    <h1 class="ruled">{SITE.demo.name}: a complete build, in the open</h1>
     <p class="lede">
       Before asking anyone to pay for this process, I ran it end to end on a
       real public website of my own. Everything about it — the code, the
@@ -19,6 +20,7 @@ import { SITE } from '../site.config';
       <span>Owned demonstration project</span>
       <span>Not commissioned client work</span>
       <span>Live and publicly verifiable</span>
+    </div>
     </div>
   </header>
 
@@ -75,13 +77,19 @@ import { SITE } from '../site.config';
           </div>
         </dl>
       </div>
-      <img
-        src="/run-psl-preview.png"
-        alt={`Screenshot of the ${SITE.demo.name} homepage showing its directory of local running events`}
-        width="1200"
-        height="900"
-        loading="lazy"
-      />
+      <div class="browser-frame">
+        <div class="frame-bar" aria-hidden="true">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span>run-psl.pages.dev</span>
+        </div>
+        <img
+          src="/run-psl-preview.png"
+          alt={`Screenshot of the ${SITE.demo.name} homepage showing its directory of local running events`}
+          width="1200"
+          height="900"
+          loading="lazy"
+        />
+      </div>
     </div>
   </section>
 

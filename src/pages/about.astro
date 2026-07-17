@@ -7,14 +7,16 @@ import { SITE } from '../site.config';
   title="About"
   description={`${SITE.name} is ${SITE.owner}, an independent website builder serving local service businesses in ${SITE.serviceArea} with a deliberately narrow, honestly scoped offer.`}
 >
-  <header class="page-intro container">
+  <header class="page-intro grid-paper">
+    <div class="container">
     <p class="eyebrow">About</p>
-    <h1>One person, doing one thing carefully</h1>
+    <h1 class="ruled">One person, doing one thing carefully</h1>
     <p class="lede">
       {SITE.name} is me — {SITE.owner}. No sales team, no offshore handoffs,
       no "account managers." The person you talk to is the person who builds
       your site.
     </p>
+    </div>
   </header>
 
   <div class="prose container">

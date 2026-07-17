@@ -6,9 +6,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   title="Page not found"
   description="The requested page could not be found. Head back to the homepage or see the services and process pages."
 >
-  <header class="page-intro container">
+  <header class="page-intro grid-paper">
+    <div class="container">
     <p class="eyebrow">404</p>
-    <h1>Page not found</h1>
+    <h1 class="ruled">Page not found</h1>
     <p class="lede">
       That address doesn't exist here — the page may have moved, or the link
       may have a typo.
@@ -16,6 +17,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="cta-row">
       <a class="btn" href="/">Back to the homepage</a>
       <a class="btn secondary" href="/services/">See services</a>
+    </div>
     </div>
   </header>
 </BaseLayout>

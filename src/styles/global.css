@@ -1,19 +1,23 @@
 /* ==========================================================================
    DeMarzo Web — global stylesheet
    --------------------------------------------------------------------------
+   Visual identity: "the proposal document, made visual."
+   Blueprint graph-paper textures, ruler-tick underlines, mono spec accents,
+   deep-teal color moments, and a light/dark section rhythm.
+
    Structure:
      1. Design tokens
      2. Base elements
      3. Layout primitives
      4. Header & navigation
-     5. Page openers (hero, page intro)
-     6. Components (buttons, tiles, spec lists, steps, bands, notices)
+     5. Page openers (hero, page intro, spec card)
+     6. Components (buttons, tiles, spec lists, steps, bands, frames)
      7. Footer
      8. Responsive adjustments
      9. Reduced motion
 
-   All colors were checked for WCAG AA contrast (≥ 4.5:1 for text) against
-   the backgrounds they appear on.
+   All text colors were checked for WCAG AA contrast (≥ 4.5:1) against the
+   backgrounds they appear on. Grid textures are decorative only.
    ========================================================================== */
 
 /* 1. Design tokens
@@ -28,9 +32,14 @@
   --accent: #0b6b62;        /* deep teal; text-safe, 6:1 on --bg         */
   --accent-deep: #0a544e;   /* hover / emphasis teal                     */
   --accent-wash: #e3f0ee;   /* pale teal panel background                */
-  --footer-bg: #10181f;     /* dark closing band                         */
-  --footer-text: #c6d0d8;   /* 11.4:1 on --footer-bg                     */
-  --footer-muted: #8fa0ad;  /* 6.6:1 on --footer-bg                     */
+  --accent-light: #7fd1c7;  /* teal for use on dark backgrounds          */
+  --dark-bg: #10181f;       /* dark bands and footer                     */
+  --dark-text: #c6d0d8;     /* 11.4:1 on --dark-bg                       */
+  --dark-muted: #8fa0ad;    /* 6.6:1 on --dark-bg                        */
+
+  /* Decorative blueprint grid (never used for text) */
+  --grid-line: rgba(11, 107, 98, 0.08);
+  --grid-line-dark: rgba(255, 255, 255, 0.045);
 
   /* Type */
   --font-body: 'Inter Variable', system-ui, sans-serif;
@@ -38,10 +47,11 @@
   --font-mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
 
   /* Shape & rhythm */
-  --radius: 6px;
+  --radius: 8px;
   --container: 1120px;
   --gutter: clamp(1.25rem, 4vw, 2rem);
   --section-gap: clamp(3.5rem, 8vw, 6.5rem);
+  --shadow-lift: 0 14px 36px rgba(16, 24, 32, 0.09);
 }
 
 /* 2. Base elements
@@ -67,19 +77,19 @@ body {
 
 h1, h2, h3 {
   font-family: var(--font-display);
-  font-weight: 600;
-  line-height: 1.12;
-  letter-spacing: -0.02em;
+  font-weight: 650;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
   margin: 0 0 0.6em;
   text-wrap: balance;
 }
 
 h2 {
-  font-size: clamp(1.6rem, 3.5vw, 2.25rem);
+  font-size: clamp(1.9rem, 4vw, 2.9rem);
 }
 
 h3 {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
 }
 
 p {
@@ -143,17 +153,17 @@ main {
 }
 
 .section-head {
-  max-width: 40rem;
-  margin-bottom: 2.2rem;
+  max-width: 42rem;
+  margin-bottom: 2.4rem;
+}
+
+.section-head.wide {
+  max-width: 46rem;
 }
 
 .section-head p {
   color: var(--muted);
   font-size: 1.05rem;
-}
-
-.section-head.wide {
-  max-width: 46rem;
 }
 
 /* Mono "spec" label: small technical eyebrow used across the site */
@@ -166,6 +176,29 @@ main {
   text-transform: uppercase;
   color: var(--accent);
   margin: 0 0 0.9rem;
+}
+
+/* Blueprint graph-paper texture for header zones and bands */
+.grid-paper {
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 34px 34px;
+}
+
+/* Ruler-tick underline: the site's signature flourish under headlines */
+.ruled::after {
+  content: '';
+  display: block;
+  margin-top: 1.3rem;
+  height: 9px;
+  width: min(15rem, 70%);
+  border-bottom: 3px solid var(--accent);
+  background: repeating-linear-gradient(
+    90deg,
+    var(--accent) 0 2px,
+    transparent 2px 18px
+  );
 }
 
 /* 4. Header & navigation
@@ -193,8 +226,8 @@ main {
   align-items: center;
   gap: 0.6rem;
   font-family: var(--font-display);
-  font-size: 1.08rem;
-  font-weight: 600;
+  font-size: 1.12rem;
+  font-weight: 650;
   letter-spacing: -0.01em;
   color: var(--ink);
   text-decoration: none;
@@ -206,8 +239,8 @@ main {
 }
 
 .brand svg {
-  width: 1.65rem;
-  height: 1.65rem;
+  width: 1.7rem;
+  height: 1.7rem;
 }
 
 .site-nav {
@@ -220,10 +253,10 @@ main {
   display: grid;
   place-items: center;
   min-height: 44px;
-  padding: 0.4rem 0.75rem;
+  padding: 0.4rem 0.8rem;
   border-radius: var(--radius);
-  font-size: 0.92rem;
-  font-weight: 500;
+  font-size: 0.93rem;
+  font-weight: 550;
   color: var(--ink);
   text-decoration: none;
   white-space: nowrap;
@@ -235,39 +268,54 @@ main {
 }
 
 .site-nav a[aria-current='page'] {
-  background: var(--ink);
+  background: var(--accent-deep);
   color: #fff;
 }
 
 /* 5. Page openers
    ========================================================================== */
-.hero {
-  padding-block: clamp(4rem, 10vw, 7.5rem) clamp(2.5rem, 6vw, 4rem);
-}
-
-.hero h1 {
-  font-size: clamp(2.3rem, 6vw, 4.1rem);
-  letter-spacing: -0.03em;
-  max-width: 17ch;
-}
-
-.page-intro {
-  padding-block: clamp(3rem, 7vw, 5rem) clamp(2rem, 5vw, 3rem);
+.hero-wrap {
   border-bottom: 1px solid var(--line);
 }
 
+.hero {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+  padding-block: clamp(3.5rem, 9vw, 6.5rem);
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 5.5vw, 4.2rem);
+  letter-spacing: -0.035em;
+}
+
+.hero h1 em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.page-intro {
+  border-bottom: 1px solid var(--line);
+}
+
+.page-intro .container {
+  padding-block: clamp(3rem, 7vw, 5rem) clamp(2.2rem, 5vw, 3.2rem);
+}
+
 .page-intro h1 {
-  font-size: clamp(2rem, 5vw, 3.1rem);
-  max-width: 22ch;
+  font-size: clamp(2.2rem, 5.5vw, 3.7rem);
+  max-width: 20ch;
 }
 
 .lede {
-  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
   color: var(--muted);
   max-width: 42rem;
 }
 
-/* Mono facts line under a heading, e.g. "3–5 pages · fixed quote" */
+/* Mono facts line under a heading */
 .meta-row {
   display: flex;
   flex-wrap: wrap;
@@ -280,6 +328,64 @@ main {
   color: var(--muted);
 }
 
+/* The hero "project spec" card: the proposal document, made literal */
+.scope-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.6rem 0.6rem;
+  box-shadow: var(--shadow-lift);
+  font-family: var(--font-mono);
+  max-width: 26rem;
+  justify-self: end;
+  width: 100%;
+}
+
+.scope-card > p {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 1.1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.scope-card > p::after {
+  content: '';
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.scope-card dl {
+  margin: 0;
+}
+
+.scope-card dl > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.7rem 0;
+  border-top: 1px solid var(--line);
+  font-size: 0.88rem;
+}
+
+.scope-card dt {
+  color: var(--muted);
+}
+
+.scope-card dd {
+  margin: 0;
+  color: var(--ink);
+  font-weight: 600;
+  text-align: right;
+}
+
 /* 6. Components
    ========================================================================== */
 
@@ -287,28 +393,39 @@ main {
 .cta-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-top: 1.6rem;
+  gap: 0.8rem;
+  margin-top: 1.7rem;
 }
 
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 48px;
-  padding: 0.65rem 1.3rem;
+  gap: 0.5rem;
+  min-height: 50px;
+  padding: 0.7rem 1.5rem;
   border-radius: var(--radius);
-  background: var(--ink);
+  background: var(--accent-deep);
   color: #fff;
   font-weight: 600;
-  font-size: 0.97rem;
+  font-size: 1rem;
   text-decoration: none;
-  transition: background-color 0.15s ease;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.btn:not(.secondary)::after {
+  content: '→' / '';
+  font-family: var(--font-display);
+  transition: transform 0.15s ease;
 }
 
 .btn:hover {
-  background: var(--accent-deep);
+  background: var(--ink);
   color: #fff;
+}
+
+.btn:hover::after {
+  transform: translateX(3px);
 }
 
 .btn.secondary {
@@ -323,18 +440,37 @@ main {
   background: var(--accent-wash);
 }
 
-/* Flat bordered tiles */
+/* Numbered, accent-barred tiles */
 .tile-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  gap: 1.1rem;
+  counter-reset: tile;
 }
 
 .tile {
+  counter-increment: tile;
   background: var(--surface);
   border: 1px solid var(--line);
+  border-top: 4px solid var(--accent);
   border-radius: var(--radius);
-  padding: 1.4rem;
+  padding: 1.5rem;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.tile:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lift);
+}
+
+.tile::before {
+  content: counter(tile, decimal-leading-zero);
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 1.1rem;
 }
 
 .tile h3 {
@@ -347,10 +483,6 @@ main {
   margin: 0;
 }
 
-.tile .eyebrow {
-  margin-bottom: 1.2rem;
-}
-
 /* Proposal-style specification list: hairline rows, term + description */
 .spec-list {
   margin: 0;
@@ -359,15 +491,16 @@ main {
 
 .spec-list > div {
   display: grid;
-  grid-template-columns: 14rem 1fr;
+  grid-template-columns: 15rem 1fr;
   gap: 0.4rem 2rem;
-  padding: 1.05rem 0;
+  padding: 1.15rem 0;
   border-bottom: 1px solid var(--line);
 }
 
 .spec-list dt {
   font-weight: 600;
   font-family: var(--font-display);
+  font-size: 1.05rem;
 }
 
 .spec-list dd {
@@ -375,7 +508,7 @@ main {
   color: var(--muted);
 }
 
-/* Numbered process steps */
+/* Numbered process steps with oversized mono numerals */
 .steps {
   margin: 0;
   padding: 0;
@@ -387,19 +520,20 @@ main {
 .steps > li {
   counter-increment: step;
   display: grid;
-  grid-template-columns: 4rem 1fr;
+  grid-template-columns: 5.5rem 1fr;
   gap: 0.3rem 1.5rem;
-  padding: 1.4rem 0;
+  padding: 1.6rem 0;
   border-bottom: 1px solid var(--line);
 }
 
 .steps > li::before {
   content: counter(step, decimal-leading-zero);
   font-family: var(--font-mono);
-  font-size: 1rem;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
   font-weight: 600;
+  line-height: 1;
   color: var(--accent);
-  padding-top: 0.2rem;
+  padding-top: 0.15rem;
 }
 
 .steps h3 {
@@ -411,11 +545,11 @@ main {
   margin: 0;
 }
 
-/* Full-width tinted band (e.g. founding rate, closing call to action) */
+/* Full-width bands. Light wash by default; dark ink with .dark */
 .band {
   background: var(--accent-wash);
   border-block: 1px solid var(--line);
-  padding-block: clamp(2.5rem, 6vw, 4rem);
+  padding-block: clamp(2.8rem, 6vw, 4.5rem);
 }
 
 .band h2 {
@@ -428,13 +562,21 @@ main {
 }
 
 .band.dark {
-  background: var(--footer-bg);
+  background-color: var(--dark-bg);
+  background-image:
+    linear-gradient(var(--grid-line-dark) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line-dark) 1px, transparent 1px);
+  background-size: 34px 34px;
   border-block: none;
   color: #fff;
 }
 
 .band.dark p {
-  color: var(--footer-text);
+  color: var(--dark-text);
+}
+
+.band.dark .eyebrow {
+  color: var(--accent-light);
 }
 
 .band.dark .btn {
@@ -444,13 +586,14 @@ main {
 
 .band.dark .btn:hover {
   background: var(--accent-wash);
+  color: var(--ink);
 }
 
 /* Case study panel */
 .case-panel {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 2rem;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(1.5rem, 4vw, 2.8rem);
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -458,11 +601,46 @@ main {
   align-items: center;
 }
 
-.case-panel img {
+/* Browser-chrome frame around site screenshots (echoes the brand mark) */
+.browser-frame {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--surface);
+  box-shadow: var(--shadow-lift);
+}
+
+.browser-frame .frame-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 0.9rem;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+}
+
+.browser-frame .frame-bar .dot {
+  width: 0.58rem;
+  height: 0.58rem;
+  border-radius: 50%;
+  background: var(--line);
+}
+
+.browser-frame .frame-bar .dot:first-child {
+  background: var(--accent);
+}
+
+.browser-frame .frame-bar span:last-child {
+  margin-left: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.browser-frame img {
+  display: block;
   width: 100%;
   height: auto;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
 }
 
 .badge {
@@ -487,7 +665,7 @@ main {
 }
 
 .prose h2 {
-  font-size: 1.45rem;
+  font-size: 1.5rem;
   margin-top: 2.4rem;
 }
 
@@ -518,8 +696,9 @@ main {
 /* 7. Footer
    ========================================================================== */
 .site-footer {
-  background: var(--footer-bg);
-  color: var(--footer-text);
+  background: var(--dark-bg);
+  border-top: 4px solid var(--accent);
+  color: var(--dark-text);
   padding-block: clamp(2.5rem, 6vw, 4rem) 2rem;
   margin-top: var(--section-gap);
 }
@@ -536,7 +715,7 @@ main {
 }
 
 .site-footer p {
-  color: var(--footer-muted);
+  color: var(--dark-muted);
   font-size: 0.92rem;
   max-width: 28rem;
 }
@@ -547,7 +726,7 @@ main {
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--footer-muted);
+  color: var(--dark-muted);
   margin-bottom: 1rem;
 }
 
@@ -560,7 +739,7 @@ main {
 }
 
 .site-footer a {
-  color: var(--footer-text);
+  color: var(--dark-text);
   text-decoration: none;
 }
 
@@ -579,12 +758,21 @@ main {
   margin-top: 1.5rem;
   padding-top: 1.5rem;
   font-size: 0.85rem;
-  color: var(--footer-muted);
+  color: var(--dark-muted);
 }
 
 /* 8. Responsive adjustments
    ========================================================================== */
-@media (max-width: 860px) {
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .scope-card {
+    justify-self: start;
+  }
+
   .tile-grid {
     grid-template-columns: 1fr 1fr;
   }
@@ -609,7 +797,11 @@ main {
   }
 
   .steps > li {
-    grid-template-columns: 2.6rem 1fr;
+    grid-template-columns: 3.2rem 1fr;
+  }
+
+  .steps > li::before {
+    font-size: 1.4rem;
   }
 
   .site-footer .container {
@@ -630,7 +822,17 @@ main {
     scroll-behavior: auto;
   }
 
-  .btn {
+  .btn,
+  .btn:not(.secondary)::after,
+  .tile {
     transition: none;
+  }
+
+  .tile:hover {
+    transform: none;
+  }
+
+  .btn:hover::after {
+    transform: none;
   }
 }

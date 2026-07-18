@@ -7,8 +7,9 @@ Update when anything here is resolved.
 
 | Decision | Choice | Notes |
 |---|---|---|
-| Business name | DeMarzo Web | Centralized in `src/site.config.ts`; renaming is a one-line edit. |
-| Repo/directory | `demarzo-web` | GitHub repos can be renamed later with automatic redirects. |
+| Business name | **Studio 772** (renamed 2026-07-17, was DeMarzo Web) | The 772 area code = the Treasure Coast; instantly local, modern-studio sound. Chosen after two candidate rounds with live RDAP domain checks and collision searches (Sailfish/Treasure Coast/Sandbar directions all had incumbent conflicts; Studio 772 came back clean). Centralized in `src/site.config.ts`. |
+| Domain | studio772.com | Confirmed unregistered via Verisign RDAP 2026-07-17; **purchase pending (Chris, ASAP)**. Update `site` in `astro.config.mjs` + Cloudflare custom domain after purchase. |
+| Repo/directory | `demarzo-web` (unchanged for now) | GitHub repo + Cloudflare Pages project keep the old name until after domain cutover — renaming mid-flight risks breaking the Pages git integration for zero user-facing gain. Revisit post-launch. |
 | Niche & geography | Local service businesses, Port St. Lucie / Treasure Coast, FL | |
 | Public pricing | Shown, with honest founding-client framing | Founding $1,200–$1,500; standard $1,800–$2,500; 50% deposit; two revision rounds. |
 | Contact method | `mailto:` from `SITE.email` | Placeholder address until the business inbox exists. |

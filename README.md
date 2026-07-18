@@ -1,6 +1,6 @@
-# DeMarzo Web
+# Studio 772
 
-The business website for DeMarzo Web — a productized service building
+The business website for Studio 772 — a productized service building
 clear, fast, mobile-first lead-generation websites for local service
 businesses around Port St. Lucie and the Treasure Coast, Florida.
 

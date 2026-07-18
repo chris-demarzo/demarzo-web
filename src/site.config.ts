@@ -8,7 +8,7 @@
  */
 export const SITE = {
   /** Business name shown in the header, footer, and page titles. */
-  name: 'DeMarzo Web',
+  name: 'Studio 772',
 
   /** The person behind the business. */
   owner: 'Chris DeMarzo',
@@ -25,7 +25,7 @@ export const SITE = {
    * false before launch. While `emailPending` is true, the contact page
    * shows a clearly labeled "inbox being set up" notice.
    */
-  email: 'quotes@demarzo-web.invalid',
+  email: 'quotes@studio772.invalid',
   emailPending: true,
 
   /** Links to the demonstration project presented on the Work page. */

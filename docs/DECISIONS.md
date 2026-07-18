@@ -8,7 +8,7 @@ Update when anything here is resolved.
 | Decision | Choice | Notes |
 |---|---|---|
 | Business name | **Studio 772** (renamed 2026-07-17, was DeMarzo Web) | The 772 area code = the Treasure Coast; instantly local, modern-studio sound. Chosen after two candidate rounds with live RDAP domain checks and collision searches (Sailfish/Treasure Coast/Sandbar directions all had incumbent conflicts; Studio 772 came back clean). Centralized in `src/site.config.ts`. |
-| Domain | studio772.com | Confirmed unregistered via Verisign RDAP 2026-07-17; **purchase pending (Chris, ASAP)**. Update `site` in `astro.config.mjs` + Cloudflare custom domain after purchase. |
+| Domain | studio772.com | **Purchased via Cloudflare Registrar 2026-07-17.** `site` in `astro.config.mjs` updated; Chris attaches it as the Pages custom domain (+ www) in the dashboard. |
 | Repo/directory | `demarzo-web` (unchanged for now) | GitHub repo + Cloudflare Pages project keep the old name until after domain cutover — renaming mid-flight risks breaking the Pages git integration for zero user-facing gain. Revisit post-launch. |
 | Niche & geography | Local service businesses, Port St. Lucie / Treasure Coast, FL | |
 | Public pricing | Shown, with honest founding-client framing | Founding $1,200–$1,500; standard $1,800–$2,500; 50% deposit; two revision rounds. |
@@ -28,11 +28,15 @@ Update when anything here is resolved.
 
 ## Open items (blockers before launch)
 
-1. **Business email** — create the real inbox, set `SITE.email`, flip
-   `SITE.emailPending` to `false`.
-2. **Domain** — none purchased. First deploy targets
-   `demarzo-web.pages.dev`; update `site` in `astro.config.mjs` when a
-   domain is connected.
+1. **Business email** — route decided 2026-07-17: **iCloud+ custom email
+   domain** (Chris already pays for 2TB iCloud+; no new subscription).
+   Chris adds studio772.com in iCloud settings + Apple's DNS records in
+   Cloudflare, creates the address, sends/receives a test — then set
+   `SITE.email` and flip `SITE.emailPending` to `false`. Note: do NOT
+   enable Cloudflare Email Routing; its MX records conflict with iCloud's.
+2. ~~**Domain**~~ — done 2026-07-17: studio772.com bought via Cloudflare
+   Registrar; `site` updated in `astro.config.mjs`. Remaining: attach
+   custom domain (+ www) to the Pages project.
 3. **About-page personalization** — the copy is deliberately modest and
    generic about background; Chris should add any true, specific personal
    detail he wants public.

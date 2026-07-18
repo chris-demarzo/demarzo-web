@@ -7,7 +7,7 @@ import sitemap from '@astrojs/sitemap';
 // Open Graph URLs, the sitemap, and robots.txt all derive from it.
 // Update it once when a custom domain is purchased.
 export default defineConfig({
-  site: 'https://demarzo-web.pages.dev',
+  site: 'https://studio772.com',
   integrations: [sitemap()],
   build: {
     // Keep all CSS in external files so the strict Content-Security-Policy

@@ -23,17 +23,22 @@ Update when anything here is resolved.
   ranges themselves may need adjustment after real conversations.
 - **Care plan pricing** is intentionally unnumbered on the site ("details
   with your quote") because no figure has been decided.
+
+## Launch (2026-07-17)
+
+All launch blockers closed in one day: name (Studio 772), domain
+(studio772.com via Cloudflare Registrar), Pages custom domain + TLS,
+git integration repaired, about page personalized, and a working
+business inbox. The site is fully open for business.
 - The "reply within one business day" commitment on the contact page is a
   service promise Chris must actually be able to keep.
 
 ## Open items (blockers before launch)
 
-1. **Business email** — route decided 2026-07-17: **iCloud+ custom email
-   domain** (Chris already pays for 2TB iCloud+; no new subscription).
-   Chris adds studio772.com in iCloud settings + Apple's DNS records in
-   Cloudflare, creates the address, sends/receives a test — then set
-   `SITE.email` and flip `SITE.emailPending` to `false`. Note: do NOT
-   enable Cloudflare Email Routing; its MX records conflict with iCloud's.
+1. ~~**Business email**~~ — DONE 2026-07-17: chris@studio772.com live on
+   iCloud+ custom domain (MX/SPF/DKIM verified in DNS), send + reply
+   round-trip tested by Chris. `SITE.email` set, `emailPending` false.
+   Reminder: Cloudflare Email Routing must stay OFF (MX conflict).
 2. ~~**Domain**~~ — DONE 2026-07-17: studio772.com live end-to-end
    (registered, attached to Pages with www, TLS + headers + sitemap
    verified in production).

@@ -20,13 +20,11 @@ export const SITE = {
   serviceArea: 'Port St. Lucie & the Treasure Coast, Florida',
 
   /**
-   * CONTACT BOUNDARY — this address is a placeholder.
-   * Replace it with the real business inbox and set `emailPending` to
-   * false before launch. While `emailPending` is true, the contact page
-   * shows a clearly labeled "inbox being set up" notice.
+   * CONTACT BOUNDARY — real inbox on iCloud+ custom domain,
+   * verified round-trip (send + reply) on 2026-07-17.
    */
-  email: 'quotes@studio772.invalid',
-  emailPending: true,
+  email: 'chris@studio772.com',
+  emailPending: false,
 
   /** Links to the demonstration project presented on the Work page. */
   demo: {

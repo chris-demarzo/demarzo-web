@@ -37,9 +37,10 @@ Update when anything here is resolved.
 2. ~~**Domain**~~ — DONE 2026-07-17: studio772.com live end-to-end
    (registered, attached to Pages with www, TLS + headers + sitemap
    verified in production).
-3. **About-page personalization** — the copy is deliberately modest and
-   generic about background; Chris should add any true, specific personal
-   detail he wants public.
+3. ~~**About-page personalization**~~ — done 2026-07-17: added "Who I am"
+   (25+ years in PSL, insurance day job serving local businesses, marathon
+   runner / Run PSL origin, 2021 AT thru-hike, family). All facts supplied
+   by Chris; passes the copy-honesty gate.
 4. ~~**Cloudflare Pages deploy**~~ — done 2026-07-17. Chris connected the
    Git integration and production is live at https://demarzo-web.pages.dev
    with security headers, sitemap, custom 404, and CSP verified against the

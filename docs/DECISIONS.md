@@ -9,7 +9,7 @@ Update when anything here is resolved.
 |---|---|---|
 | Business name | **Studio 772** (renamed 2026-07-17, was DeMarzo Web) | The 772 area code = the Treasure Coast; instantly local, modern-studio sound. Chosen after two candidate rounds with live RDAP domain checks and collision searches (Sailfish/Treasure Coast/Sandbar directions all had incumbent conflicts; Studio 772 came back clean). Centralized in `src/site.config.ts`. |
 | Domain | studio772.com | **Purchased via Cloudflare Registrar and LIVE 2026-07-17.** Custom domain + www attached, TLS valid, canonical/sitemap/robots verified against production. Pages git integration reconnected after a disconnect (rebrand deploy required a trigger push). |
-| Repo/directory | `demarzo-web` (unchanged for now) | GitHub repo + Cloudflare Pages project keep the old name until after domain cutover — renaming mid-flight risks breaking the Pages git integration for zero user-facing gain. Revisit post-launch. |
+| Repo/directory | `studio772-web` | Renamed from `demarzo-web` after launch; Git history is preserved. The GitHub repository is `chris-demarzo/studio772-web`; confirm Cloudflare Pages continues to build from the renamed repository. |
 | Niche & geography | Local service businesses, Port St. Lucie / Treasure Coast, FL | |
 | Public pricing | Shown, with honest founding-client framing | Founding $1,200–$1,500; standard $1,800–$2,500; 50% deposit; two revision rounds. |
 | Contact method | `mailto:` from `SITE.email` | Placeholder address until the business inbox exists. |
@@ -47,9 +47,11 @@ business inbox. The site is fully open for business.
    runner / Run PSL origin, 2021 AT thru-hike, family). All facts supplied
    by Chris; passes the copy-honesty gate.
 4. ~~**Cloudflare Pages deploy**~~ — done 2026-07-17. Chris connected the
-   Git integration and production is live at https://demarzo-web.pages.dev
-   with security headers, sitemap, custom 404, and CSP verified against the
-   live deployment.
+   Git integration and production was initially live at
+   https://demarzo-web.pages.dev with security headers, sitemap, custom 404,
+   and CSP verified against the live deployment. The GitHub repository was
+   renamed to `studio772-web` post-launch; confirm the Pages integration and
+   preview URL after the next deployment.
 
 ## Deferred by design (not gaps)
 
